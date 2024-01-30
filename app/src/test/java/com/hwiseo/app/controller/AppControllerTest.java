@@ -23,6 +23,8 @@ class AppControllerTest {
         account.setBankCod("1");
         account.setBankName("신한");
 
-        appController.createAccount(account);
+        for(int i=0; i< 10; i++) {
+            appController.createAccount(account);
+        }
     }
 }
