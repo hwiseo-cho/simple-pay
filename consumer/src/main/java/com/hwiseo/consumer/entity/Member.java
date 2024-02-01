@@ -8,16 +8,10 @@ import lombok.Setter;
 
 @Entity
 @Getter @Setter
-public class Account {
+public class Member {
 
-    @Id
+    @Id @GeneratedValue
     private String memberId;
-
-    private String accountNo;
-
-    private String userName;
-
-    private String bankCod;
-
-    private String bankName;
+    private String memberName;
+    private String phone;
 }

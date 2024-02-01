@@ -1,6 +1,7 @@
 package com.hwiseo.app.controller;
 
 import com.hwiseo.app.domain.Account;
+import com.hwiseo.app.service.AccountService;
 import com.hwiseo.app.service.AppService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,12 +17,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Slf4j
 public class AppController {
 
-    private final AppService appService;
+    private final AccountService accountService;
 
     @PostMapping("/app/account")
     public String createAccount(@ModelAttribute("account") Account account) {
 
-        String resultCod = appService.createAccount(account);
+        String resultCod = accountService.createAccount(account);
 
         return resultCod;
     }

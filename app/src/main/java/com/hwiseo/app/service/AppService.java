@@ -1,7 +1,10 @@
 package com.hwiseo.app.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hwiseo.app.common.Topic;
+import com.hwiseo.app.common.Topic;
 import com.hwiseo.app.domain.Account;
+import com.hwiseo.app.domain.Member;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
@@ -15,14 +18,18 @@ public class AppService {
 
     private final KafkaTemplate<String, String> kafkaTemplate;
 
-    public String createAccount(Account account) {
+    public String sendKafka(Topic topicName, Object object) {
         final String[] resultCod = new String[1];
 
         try {
-            String jsonAccount = new ObjectMapper().writeValueAsString(account);
-            log.info("test {}", jsonAccount);
+            // 받아온 토픽으로 설정
+            String topic = topicName.getTopicName();
 
-            kafkaTemplate.send("insert-account", jsonAccount).whenComplete((result, error) -> {
+            // 받아온 값 세팅
+            String jsonAccount = new ObjectMapper().writeValueAsString(object);
+            log.info("data {}", jsonAccount);
+
+            kafkaTemplate.send(topic, jsonAccount).whenComplete((result, error) -> {
                 // success
                 if(error == null) {
                     resultCod[0] = "0000";
@@ -41,4 +48,5 @@ public class AppService {
 
         return resultCod[0];
     }
+
 }
