@@ -11,7 +11,7 @@ import lombok.Setter;
 public class Member {
 
     @Id @GeneratedValue
-    private String memberId;
+    private Long memberId;
     private String memberName;
     private String phone;
 }
