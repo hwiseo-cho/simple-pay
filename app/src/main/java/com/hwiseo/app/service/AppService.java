@@ -18,18 +18,18 @@ public class AppService {
 
     private final KafkaTemplate<String, String> kafkaTemplate;
 
-    public String sendKafka(Topic topicName, Object object) {
+    public String sendKafka(Topic topic, String key, Object object) {
         final String[] resultCod = new String[1];
 
         try {
             // 받아온 토픽으로 설정
-            String topic = topicName.getTopicName();
+            String topicName = topic.getTopicName();
 
             // 받아온 값 세팅
             String jsonAccount = new ObjectMapper().writeValueAsString(object);
             log.info("data {}", jsonAccount);
 
-            kafkaTemplate.send(topic, jsonAccount).whenComplete((result, error) -> {
+            kafkaTemplate.send(topicName, key, jsonAccount).whenComplete((result, error) -> {
                 // success
                 if(error == null) {
                     resultCod[0] = "0000";

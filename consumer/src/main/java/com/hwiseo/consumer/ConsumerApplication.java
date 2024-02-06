@@ -1,7 +1,6 @@
 package com.hwiseo.consumer;
 
 import com.hwiseo.consumer.common.Topic;
-import com.hwiseo.consumer.worker.ConsumerWorker;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerConfig;

@@ -15,7 +15,7 @@ public class MemberService {
 
     public String createMember(Member member) {
 
-        String resultCod = appService.sendKafka(Topic.MEMBER, member);
+        String resultCod = appService.sendKafka(Topic.MEMBER, "createMember" , member);
 
         return resultCod;
     }
