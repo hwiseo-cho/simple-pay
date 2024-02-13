@@ -18,6 +18,9 @@ public class AppService {
 
     private final KafkaTemplate<String, String> kafkaTemplate;
 
+    /**
+     * kafka 전송(producer)
+     */
     public String sendKafka(Topic topic, String key, Object object) {
         final String[] resultCod = new String[1];
 
