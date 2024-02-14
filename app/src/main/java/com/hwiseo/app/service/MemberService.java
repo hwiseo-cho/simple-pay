@@ -4,6 +4,7 @@ import com.hwiseo.app.common.Topic;
 import com.hwiseo.app.domain.Member;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,10 +14,7 @@ public class MemberService {
 
     private final AppService appService;
 
-    public String createMember(Member member) {
-
-        String resultCod = appService.sendKafka(Topic.MEMBER, "createMember" , member);
-
-        return resultCod;
+    public JSONObject createMember(Member member) {
+        return appService.sendKafka(Topic.MEMBER, "createMember" , member);
     }
 }

@@ -1,5 +1,6 @@
 package com.hwiseo.consumer.repository;
 
+import com.hwiseo.consumer.entity.Account;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
@@ -14,5 +15,10 @@ public class AccountRepositroyImpl implements AccountRepository {
     public AccountRepositroyImpl(EntityManager em) {
         this.em = em;
         this.queryFactory = new JPAQueryFactory(em);
+    }
+
+    @Override
+    public void createAccount(Account account) {
+        em.persist(account);
     }
 }

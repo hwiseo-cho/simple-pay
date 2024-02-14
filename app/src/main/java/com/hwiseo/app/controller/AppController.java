@@ -19,11 +19,4 @@ public class AppController {
 
     private final AccountService accountService;
 
-    @PostMapping("/app/account")
-    public String createAccount(@ModelAttribute("account") Account account) {
-
-        String resultCod = accountService.createAccount(account);
-
-        return resultCod;
-    }
 }

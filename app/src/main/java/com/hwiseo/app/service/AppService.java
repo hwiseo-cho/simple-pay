@@ -21,8 +21,9 @@ public class AppService {
     /**
      * kafka 전송(producer)
      */
-    public String sendKafka(Topic topic, String key, Object object) {
-        final String[] resultCod = new String[1];
+    public JSONObject sendKafka(Topic topic, String key, Object object) {
+        JSONObject json = new JSONObject();
+        final String[] resultStr = new String[2];
 
         try {
             // 받아온 토픽으로 설정
@@ -35,12 +36,14 @@ public class AppService {
             kafkaTemplate.send(topicName, key, jsonAccount).whenComplete((result, error) -> {
                 // success
                 if(error == null) {
-                    resultCod[0] = "0000";
+                    resultStr[0] = "0000";
+                    resultStr[1] = "success";
                     log.info("AppService success {}", result);
                 }
                 // fail
                 else {
-                    resultCod[0] = "9999";
+                    resultStr[0] = "9999";
+                    resultStr[1] = error.getMessage();
                     log.error("AppService fail {}", error);
                 }
             });
@@ -49,7 +52,10 @@ public class AppService {
             e.printStackTrace();
         }
 
-        return resultCod[0];
+        json.put("result", resultStr[0]);
+        json.put("message", resultStr[1]);
+
+        return json;
     }
 
 }

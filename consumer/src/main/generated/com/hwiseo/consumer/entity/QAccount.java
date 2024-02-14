@@ -19,13 +19,15 @@ public class QAccount extends EntityPathBase<Account> {
 
     public static final QAccount account = new QAccount("account");
 
+    public final NumberPath<Long> accountId = createNumber("accountId", Long.class);
+
     public final StringPath accountNo = createString("accountNo");
 
     public final StringPath bankCod = createString("bankCod");
 
     public final StringPath bankName = createString("bankName");
 
-    public final StringPath memberId = createString("memberId");
+    public final NumberPath<Long> memberId = createNumber("memberId", Long.class);
 
     public final StringPath userName = createString("userName");
 
