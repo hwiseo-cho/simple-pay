@@ -11,20 +11,19 @@ import static org.junit.jupiter.api.Assertions.*;
 class AppControllerTest {
 
     @Autowired
-    private AppController appController;
+    private AccountController accountController;
 
     @Test
     public void 계좌_등록() {
         Account account = new Account();
-
-        account.setMemberId("1");
+        account.setMemberId(1L);
         account.setAccountNo("1234");
         account.setUserName("1234");
         account.setBankCod("1");
         account.setBankName("신한");
 
         for(int i=0; i< 10; i++) {
-            appController.createAccount(account);
+            accountController.createAccount(account);
         }
     }
 }

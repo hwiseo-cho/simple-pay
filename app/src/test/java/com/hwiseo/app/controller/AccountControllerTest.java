@@ -5,6 +5,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -22,6 +26,13 @@ class AccountControllerTest {
         account.setBankCod("000");
         account.setUserName("조휘서");
 
+        accountController.createAccount(account);
+
+    }
+
+    @Test
+    void 계좌_생성_에러() {
+        Account account = new Account();
         accountController.createAccount(account);
     }
 }
